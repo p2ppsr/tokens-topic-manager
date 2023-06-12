@@ -81,7 +81,7 @@ class TokenManager {
           }
 
           /// Extract the amount of the token from the output and make sure it's at least 1
-          const outputTokenAmount = Number(result.fields[0])
+          const outputTokenAmount = Number(result.fields[0].toString('utf8'))
           if (outputTokenAmount < 1) {
             throw new Error('Output token amount cannot be less than 1')
           }
