@@ -42,7 +42,9 @@ class TokenManager {
       }
 
       // Allow the issuance transaction.
+      console.log(`${parsedTransaction.txid} === ${this.issuanceTXID}`)
       if (parsedTransaction.txid === this.issuanceTXID) {
+        console.log('Admitting issuance TXID')
         return [0]
       }
 
@@ -55,6 +57,7 @@ class TokenManager {
         })
         maxTokens += Number(tokenPayload.fields[0])
       }
+      console.log(`max tokens: ${maxTokens}`)
 
       const outputs = []
       let totalTokensAdded = 0
@@ -95,6 +98,8 @@ class TokenManager {
         }
       }
 
+      console.log(`Total tokens: ${totalTokensAdded}`)
+
       // The transaction is invalid if the outputs total to more than what the inputs unlocked (in terms of token amounts)
       if (totalTokensAdded > maxTokens) {
         throw new Error('Transaction output token amounts exceed inputs redeemed!')
@@ -103,6 +108,7 @@ class TokenManager {
       // Returns an array of output numbers
       return outputs
     } catch (error) {
+      console.error(error)
       return []
     }
   }
