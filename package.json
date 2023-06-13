@@ -1,6 +1,6 @@
 {
   "name": "tokens-topic-manager",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Manages a Confederacy Topic for Tokens",
   "main": "src/Manager.js",
   "scripts": {
