@@ -51,7 +51,7 @@ class TokenManager {
       // Total the tokens being spent by this transaction.
       let maxTokens = 0
       for (const utxo of previousUTXOs) {
-        console.llg(utxo)
+        console.log(utxo)
         const tokenPayload = pushdrop.decode({
           script: utxo.outputScript.toString('hex'),
           fieldFormat: 'utf8'
