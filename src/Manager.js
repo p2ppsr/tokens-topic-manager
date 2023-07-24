@@ -72,18 +72,6 @@ class TokenManager {
             fieldFormat: 'buffer'
           })
 
-          // Use ECDSA to verify signature
-          const hasValidSignature = bsv.crypto.ECDSA.verify(
-            bsv.crypto.Hash.sha256(Buffer.concat(result.fields)),
-            bsv.crypto.Signature.fromString(result.signature),
-            bsv.PublicKey.fromString(result.lockingPublicKey)
-          )
-          if (!hasValidSignature) {
-            const e = new Error('Invalid Signature')
-            e.code = 'ERR_INVALID_SIGNATURE'
-            throw e
-          }
-
           /// Extract the amount of the token from the output and make sure it's at least 1
           const outputTokenAmount = Number(result.fields[0].toString('utf8'))
           if (outputTokenAmount < 1) {
